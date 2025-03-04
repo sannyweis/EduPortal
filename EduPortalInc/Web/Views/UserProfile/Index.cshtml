@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Domain.Entities.UserProfile>
+
+<h1>User Profiles</h1>
+<h2>Users List</h2> <a asp-action="Create" class="btn btn-primary">Create New User</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Phone Number</th>
+            <th>Bio</th>
+            <th>Date of Birth</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.PhoneNumber</td>
+                <td>@user.Bio</td>
+                <td>@user.DateOfBirth.ToString("d")</td>
+                <td>
+                    <a href="@Url.Action("Details", "UserProfile", new { id = user.Id })">Details</a> |
+                    <a href="@Url.Action("Edit", "UserProfile", new { id = user.Id })">Edit</a> |
+                    <a href="@Url.Action("Delete", "UserProfile", new { id = user.Id })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
